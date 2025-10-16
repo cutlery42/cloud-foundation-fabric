@@ -26,7 +26,7 @@ locals {
     ) if !endswith(f, "/.config.yaml")
   }
   _projects_input = {
-    for k, v in merge(local._folder_projects_raw, local._projects_raw) :
+    for k, v in merge(local._folder_projects_raw, local._projects_raw, var.projects) :
     basename(k) => merge(
       try(local._templates_raw[v.project_template], {}),
       v
@@ -69,7 +69,7 @@ locals {
   project_numbers = {
     for k, v in module.projects : k => v.number
   }
-  projects_input = merge(var.projects, local._projects_output)
+  projects_input = local._projects_output
   projects_service_agents = merge([
     for k, v in module.projects : {
       for kk, vv in v.service_agents : "service_agents/${k}/${kk}" => vv.iam_email
