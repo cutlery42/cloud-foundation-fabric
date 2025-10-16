@@ -79,6 +79,10 @@ variable "data_defaults" {
       service_iam_grants       = optional(list(string), [])
       network_subnet_users     = optional(map(list(string)), {})
     }))
+    shared_vpc_host_config = optional(object({
+      enabled          = bool
+      service_projects = optional(list(string), [])
+    }))
     storage_location = optional(string)
     tag_bindings     = optional(map(string), {})
     # non-project resources

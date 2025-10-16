@@ -26,7 +26,7 @@ locals {
     ) if !endswith(f, "/.config.yaml")
   }
   _projects_input = {
-    for k, v in merge(local._folder_projects_raw, local._projects_raw) :
+    for k, v in merge(local._folder_projects_raw, local._projects_raw, var.projects) :
     basename(k) => merge(
       try(local._templates_raw[v.project_template], {}), v
     )
@@ -49,7 +49,7 @@ locals {
   project_ids = {
     for k, v in module.projects : k => v.project_id
   }
-  projects_input = merge(var.projects, local._projects_output)
+  projects_input = local._projects_output
 }
 
 module "projects" {

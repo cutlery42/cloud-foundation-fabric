@@ -258,7 +258,7 @@ locals {
       shared_vpc_host_config = ( # type: object({...})
         try(v.shared_vpc_host_config, null) != null
         ? merge(
-          { service_projects = [] },
+          { service_projects = [], enabled = true },
           v.shared_vpc_host_config
         )
         : null
