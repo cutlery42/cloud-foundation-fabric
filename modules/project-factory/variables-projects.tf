@@ -409,9 +409,10 @@ variable "projects" {
     })), {})
     universe = optional(object({
       prefix                         = string
+      forced_jit_service_identities  = optional(list(string), [])
       unavailable_services           = optional(list(string), [])
       unavailable_service_identities = optional(list(string), [])
-    }))
+    }), null)
     vpc_sc = optional(object({
       perimeter_name = string
       is_dry_run     = optional(bool, false)
