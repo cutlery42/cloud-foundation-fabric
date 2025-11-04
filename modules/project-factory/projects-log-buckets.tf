@@ -23,12 +23,14 @@ locals {
         name         = name
         description  = lookup(opts, "description", "Terraform-managed.")
         kms_key_name = lookup(opts, "kms_key_name", null)
-        location = try(
-          lookup(local.ctx.locations, opts.location, opts.location),
+        location = coalesce(
+          local.data_defaults.overrides.locations.logging,
+          lookup(opts, "location", null),
+          local.data_defaults.defaults.locations.logging,
           "global"
         )
-        retention     = lookup(v, "retention", null)
-        log_analytics = lookup(v, "log_analytics", {})
+        retention     = lookup(opts, "retention", null)
+        log_analytics = lookup(opts, "log_analytics", {})
       }
     ]
   ])
