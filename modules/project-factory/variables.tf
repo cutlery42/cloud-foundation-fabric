@@ -91,7 +91,8 @@ variable "data_defaults" {
       enabled          = bool
       service_projects = optional(list(string), [])
     }))
-    tag_bindings = optional(map(string), {})
+    storage_location = optional(string)
+    tag_bindings     = optional(map(string), {})
     universe = optional(object({
       prefix                         = string
       forced_jit_service_identities  = optional(list(string), [])
