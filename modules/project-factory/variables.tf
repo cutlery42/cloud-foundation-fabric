@@ -154,6 +154,7 @@ variable "data_overrides" {
       iam_self_roles = optional(list(string))
     })))
     service_encryption_key_ids = optional(map(list(string)))
+    storage_location           = optional(string)
     services                   = optional(list(string))
     tag_bindings               = optional(map(string))
     universe = optional(object({
