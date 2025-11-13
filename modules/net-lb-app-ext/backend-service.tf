@@ -292,4 +292,7 @@ resource "google_compute_backend_service" "default" {
       }
     }
   }
+  lifecycle {
+    ignore_changes = [backend]
+  }
 }

@@ -78,7 +78,4 @@ resource "google_compute_backend_bucket" "default" {
       }
     }
   }
-  lifecycle {
-    ignore_changes = [backend]
-  }
 }
