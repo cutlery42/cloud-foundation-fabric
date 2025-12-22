@@ -19,7 +19,8 @@
 locals {
   backend_ids = merge(
     { for k, v in google_compute_backend_service.default : k => v.id },
-    { for k, v in google_compute_backend_bucket.default : k => v.id }
+    { for k, v in google_compute_backend_bucket.default : k => v.id },
+    var.backend_ids
   )
 }
 

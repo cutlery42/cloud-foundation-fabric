@@ -49,6 +49,12 @@ variable "backend_buckets_config" {
   nullable = true
 }
 
+variable "backend_ids" {
+  description = "Map of additional backend IDs to include in URL map."
+  type        = map(string)
+  default     = {}
+}
+
 variable "description" {
   description = "Optional description used for resources."
   type        = string
