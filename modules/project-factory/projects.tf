@@ -116,6 +116,7 @@ module "projects" {
     })
     folder_ids = local.ctx_folder_ids
   })
+  custom_roles = each.value.custom_roles
   default_service_account = try(each.value.default_service_account, "keep")
   factories_config = {
     for k, v in each.value.factories_config : k => try(pathexpand(

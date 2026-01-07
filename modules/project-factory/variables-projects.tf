@@ -321,7 +321,9 @@ variable "projects" {
       soft_delete_retention = optional(number)
     })), {})
     compute_metadata = optional(map(string))
-    contacts         = optional(map(list(string)), {})
+
+    custom_roles = optional(map(list(string)), {})
+    contacts     = optional(map(list(string)), {})
     datasets = optional(map(object({
       encryption_key = optional(string)
       friendly_name  = optional(string)

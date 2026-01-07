@@ -46,6 +46,10 @@ locals {
           module.log-buckets["${k}/${sk}"].id
         )
       }
+
+      custom_roles    = module.projects[k].custom_roles
+      custom_role_ids = module.projects[k].custom_role_id
+
       pubsub_topics = {
         for sk, sv in lookup(v, "pubsub_topics", {}) :
         "${k}/${sk}" => (
@@ -96,6 +100,19 @@ output "folder_ids" {
 output "iam_principals" {
   description = "IAM principals mappings."
   value       = local.iam_principals
+}
+
+output "custom_roles" {
+  description = "Custom roles mappings."
+  value = merge([
+    for k, v in local.outputs_projects : v.custom_roles
+  ]...)
+}
+
+output "custom_role_ids" {
+  value = {
+    for k, v in local.outputs_projects : k => v.custom_role_ids
+  }
 }
 
 output "kms_keys" {
