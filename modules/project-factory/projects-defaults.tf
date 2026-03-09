@@ -94,7 +94,7 @@ locals {
           local.data_defaults.overrides.prefix != null
           ? local.data_defaults.overrides.prefix
           : (
-            try(v.prefix, "-") == "-"
+            try(v.prefix, null) == null
             ? local.data_defaults.defaults.prefix
             : v.prefix
           )
